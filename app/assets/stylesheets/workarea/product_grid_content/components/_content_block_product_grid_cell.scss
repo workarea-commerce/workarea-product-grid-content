@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    #CONTENT-BLOCK--PRODUCT-GRID-CELL
+    Component modifier for .content-block
+\*------------------------------------*/
+
+.content-block--insights-grid-cell,
+.content-block--product-grid-cell {
+    display: inline;
+
+    &.content-block--hidden-for-small {
+        display: none;
+
+        @include respond-to($medium-breakpoint) {
+            display: inline;
+        }
+    }
+
+    &.content-block--hidden-for-medium {
+        @include respond-to($medium-breakpoint) {
+            display: none;
+        }
+
+        @include respond-to($wide-breakpoint) {
+            display: inline;
+        }
+    }
+
+    &.content-block--hidden-for-wide {
+        @include respond-to($wide-breakpoint) {
+            display: none;
+        }
+
+        @include respond-to($x-wide-breakpoint) {
+            display: inline;
+        }
+    }
+
+    &.content-block--hidden-for-x-wide {
+        display: none;
+    }
+
+    .grid--flush & {
+        padding-left: 0;
+    }
+}

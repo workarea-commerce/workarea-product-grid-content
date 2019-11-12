@@ -1,0 +1,31 @@
+require 'test_helper'
+
+module Workarea
+  decorate Storefront::CategoryViewModelTest, with: :product_grid_content do
+    def test_content
+      products = [
+        create_product(name: 'Foo 1', filters: { 'color' => 'Red' }),
+        create_product(name: 'Foo 2', filters: { 'color' => 'Green' })
+      ]
+
+      BulkIndexProducts.perform_by_models(products)
+      @category.product_rules.create!(
+        name: 'search',
+        operator: 'equals',
+        value: 'foo'
+      )
+
+      content = Content.for(@category)
+      content.blocks.create!(
+        area: 'in_grid',
+        type: 'product_grid_cell',
+        data: { position: '1' }
+      )
+      view_model = Storefront::CategoryViewModel.new(@category)
+
+      assert_equal(1, view_model.product_grid_content_blocks.count)
+      assert_equal(content.blocks.first, view_model.product_grid_content_for(0).first.model)
+      assert_equal(0, view_model.product_position_offset)
+    end
+  end
+end

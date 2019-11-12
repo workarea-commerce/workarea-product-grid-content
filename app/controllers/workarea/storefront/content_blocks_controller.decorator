@@ -1,0 +1,46 @@
+module Workarea
+  decorate Storefront::ContentBlocksController, with: :product_grid_content do
+    decorated do
+      layout :check_grid_preview, only: [:show, :draft]
+    end
+
+    def show
+      super
+
+      if @block.area.inquiry.in_grid?
+        get_product_for_grid_preview
+      end
+    end
+
+    def draft
+      draft = Content::BlockDraft.find(params[:id])
+
+      @content = draft.content
+      @block = Storefront::ContentBlockViewModel.wrap(
+        draft.to_block,
+        view_model_options
+      )
+
+      if @block.area.inquiry.in_grid?
+        get_product_for_grid_preview
+      end
+
+      render :show
+    end
+
+    private
+
+      def check_grid_preview
+        if @block.area.inquiry.in_grid?
+          "workarea/storefront/in_grid_content_preview"
+        else
+          "workarea/storefront/empty"
+        end
+      end
+
+      def get_product_for_grid_preview
+        product = Workarea::Catalog::Product.sample
+        @product = Workarea::Storefront::ProductViewModel.wrap(product)
+      end
+  end
+end

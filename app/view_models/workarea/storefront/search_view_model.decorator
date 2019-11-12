@@ -1,0 +1,12 @@
+module Workarea
+  decorate Storefront::SearchViewModel, with: :product_grid_content do
+    decorated do
+      include Storefront::ProductGridContent
+    end
+
+    def product_grid_content_blocks
+      return [] unless customization.persisted?
+      customization.content_blocks_for(:in_grid)
+    end
+  end
+end

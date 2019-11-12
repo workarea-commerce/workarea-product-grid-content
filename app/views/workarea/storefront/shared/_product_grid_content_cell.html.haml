@@ -1,0 +1,3 @@
+- model = @category || @search
+- if model.product_grid_content_for(position).present?
+  = render_content_blocks(model.product_grid_content_for(position))

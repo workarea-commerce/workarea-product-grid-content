@@ -1,0 +1,9 @@
+/*------------------------------------*\
+    #PAGINATION
+    Extends the base pagination styles adding clearfix to ensure floated content
+    blocks do not break the page layout.
+\*------------------------------------*/
+
+.pagination {
+    @extend %clearfix;
+}

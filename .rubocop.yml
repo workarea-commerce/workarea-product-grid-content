@@ -1,0 +1,8 @@
+inherit_gem:
+  workarea-ci: rubocop.yml
+
+AllCops:
+  Exclude:
+    - 'test/dummy/**/*'
+    - 'lib/product_grid_content.rb'
+    - 'lib/product_grid_content/**/*'

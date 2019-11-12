@@ -1,0 +1,11 @@
+module Workarea
+  decorate Storefront::CategoryViewModel, with: :product_grid_content do
+    decorated do
+      include Storefront::ProductGridContent
+    end
+
+    def product_grid_content_blocks
+      @product_grid_content_blocks ||= content_blocks_for(:in_grid)
+    end
+  end
+end

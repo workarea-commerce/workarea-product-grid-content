@@ -1,0 +1,8 @@
+.grid__cell{ class: view_model.cell_width_class, style: view_model.cell_styles, data: { pagination_item: '' } }
+  .insights-grid-cell-content-block{ data: { match_product_summary_height: { rows: height }.to_json } }
+    - if view_model.products.present?
+      .grid
+        - view_model.products.each do |product|
+          .grid__cell{ class: view_model.sub_grid_cell_class }
+            .product-summary
+              = render 'workarea/storefront/products/summary', product: product

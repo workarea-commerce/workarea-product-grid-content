@@ -1,0 +1,27 @@
+#product-grid-cell-content-block.style-guide__subsection
+
+  %h3= link_to_style_guide('components', 'product_grid_cell_content_block')
+
+  %p A content block that displays an image with positionable content in the product grid.
+  %p This content block is designed for use inside the product grid.
+  %p Options for width and height allow the admin user to create blocks that are 1x1, 1x2, 2x1, and 2x2 cells in size.
+  %p When creating a block that is taller than 1 cell the block will automatically be floated to the left to prevent breaking the grid. This float can be set to 'right' using controls in the admin.
+
+  - [1, 2].each do |width|
+    - [1, 2].each do |height|
+      %p
+        Should display a <b>#{width} x #{height} cell</b>
+        - if height > 1
+          and should automatically float left
+
+      - cell_width_class = Workarea.config.product_grid_cell_classes[width.to_s.to_sym]
+      - cell_styles = height > 1 ? "height: 500px; float: left;" : "height: 250px;"
+      .grid{ class: ('clearfix' if height > 1) }
+        .grid__cell{ class: cell_width_class, style: cell_styles, data: { pagination_item: '' } }
+          .product-grid-cell-content-block{ data: { match_product_summary_height: { rows: height }.to_json } }
+            .product-grid-cell-content-block__content
+              %h2 Heading Text
+              %p.product-grid-cell-content-block__action= link_to 'Link Text', '#', class: 'button'
+            .product-grid-cell-content-block__media-container.product-grid-cell-content-block__media-container--maintain-aspect-ratio
+              = link_to '#', class: 'product-grid-cell-content-block__image-link' do
+                = image_tag 'workarea/storefront/style_guide_light_banner.png', alt: "image alt", class: 'product-grid-cell-content-block__image', style: "height: 100%"
