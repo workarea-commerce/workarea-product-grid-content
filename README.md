@@ -8,23 +8,6 @@ Extend the merchandising abilities of the Workarea Ecommerce platform with conte
 Example of a 2x1 content block in the browse grid:
 ![Sample 2x1 Grid Content](public/sample_grid_content.png)
 
-Platform Compatibility
---------------------------------------------------------------------------------
-
-This plugin is best used with Workarea v3.3.0 and up.
-
-Applications running > v3.0.27, > v3.1.13, > v3.2.2 or higher can use this plugin but require a few small changes to their host application view files.
-
-1. Update the iterator in `storefront/categories/show.html.haml` to
-
-    `@category.products.each_with_index do |product, position|`
-
-2. Within the iterator add the following render statement
-
-    `= render 'workarea/storefront/shared/product_grid_content_cell', model: @category, position: position`
-
-3. Add the same render statement to the equivalent iterator in storefront searches/show.html.haml
-
 Block Type Grid Options
 --------------------------------------------------------------------------------
 
