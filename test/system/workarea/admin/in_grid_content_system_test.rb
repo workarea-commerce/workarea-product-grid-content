@@ -35,10 +35,10 @@ module Workarea
         assert(page.has_selector?('.content-block'))
 
         preview_frame = page.find('.content-block__iframe')
-        switch_to_frame(preview_frame) do |frame|
-          assert(frame.has_selector?('.grid'))
-          assert(frame.has_selector?('.grid__cell'), count: Workarea.config.grid_cell_content_preview_cells)
-          assert(frame.has_selector?('.product-grid-cell-content-block'))
+        within_frame(preview_frame) do
+          assert(page.has_selector?('.grid'))
+          assert(page.has_selector?('.grid__cell'), count: Workarea.config.grid_cell_content_preview_cells)
+          assert(page.has_selector?('.product-grid-cell-content-block'))
         end
       end
 
