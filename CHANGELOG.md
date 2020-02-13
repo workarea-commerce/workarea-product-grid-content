@@ -1,3 +1,15 @@
+Workarea Product Grid Content 1.3.1 (2020-02-13)
+--------------------------------------------------------------------------------
+
+*   Fix leaky test
+
+    `switch_to_frame` doesn't take a block, and the caller is responsible
+    for switching back to the previous frame.  Fix test to correctly use
+    `within_frame`.
+    Eric Pigeon
+
+
+
 Workarea Product Grid Content 1.3.0 (2019-06-25)
 --------------------------------------------------------------------------------
 
