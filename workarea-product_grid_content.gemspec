@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.description = "Extend the workarea platform with functionality to add content to the product grid"
   s.files       = `git ls-files`.split("\n")
 
-  s.add_dependency "workarea", "~> 3.x", ">= 3.4"
+  s.add_dependency "workarea", "~> 3.x", ">= 3.5.0"
 end
