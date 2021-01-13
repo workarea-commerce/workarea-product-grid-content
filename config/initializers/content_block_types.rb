@@ -1,4 +1,4 @@
-Workarea::Content.define_block_types do
+Workarea.define_content_block_types do
   block_type "Product Grid Cell" do
     description "Content block for your product grid"
     view_model "Workarea::Storefront::ContentBlocks::ProductGridCellViewModel"
