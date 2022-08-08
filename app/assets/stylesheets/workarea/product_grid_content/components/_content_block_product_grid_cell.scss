@@ -36,7 +36,9 @@
     }
 
     &.content-block--hidden-for-x-wide {
-        display: none;
+        @include respond-to($x-wide-breakpoint) {
+            display: none;
+        }
     }
 
     .grid--flush & {
